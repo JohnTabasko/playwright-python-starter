@@ -1,11 +1,13 @@
 from playwright.sync_api import expect, Page
 
+from tests.utils.constants import BASE_URL
+
 name = 'Sofia'
 
 
 # Default handling is to dismiss
 def test_dialog_default_handling(page: Page):
-    page.goto('')
+    page.goto(BASE_URL)
 
     name_input = page.get_by_label('First name')
     name_input.fill(name)
@@ -17,7 +19,9 @@ def test_dialog_default_handling(page: Page):
 
 def test_dialog_ok_or_dismiss(page: Page):
 
-    page.goto('')
+    page.on('dialog', lambda dialog: dialog.accept())
+
+    page.goto(BASE_URL)
 
     input_name = page.get_by_label('First name')
     input_name.fill(name)
