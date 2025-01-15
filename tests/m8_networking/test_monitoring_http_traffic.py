@@ -19,3 +19,4 @@ def test_http_traffic(page: Page):
     page.goto(BASE_URL)
 
     assert len(traffic_errors) == 0, 'Expected 0 traffic errors'
+
